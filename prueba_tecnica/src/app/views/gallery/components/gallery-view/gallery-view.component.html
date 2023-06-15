@@ -1,0 +1,13 @@
+<ion-grid>
+  <ion-row>
+    <ion-col size="3" *ngFor="let photo of photoGallery">
+      <ion-card>
+        <img [src]='photo.photo'/>
+        <ion-card-content>
+          {{photo.text}}
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+

@@ -6,6 +6,7 @@
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
@@ -13,12 +14,18 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
+  <div>
+    <app-gallery-filter></app-gallery-filter>
+    <app-gallery-view [photoGallery]="photoGallery"></app-gallery-view>
+    <!--
     <ion-card *ngFor="let photo of photoGallery">
       <img [src]='photo.photo'/>
       <ion-card-content>
         {{photo.text}}
       </ion-card-content>
     </ion-card>
+  -->
   </div>
+
+  
 </ion-content>
