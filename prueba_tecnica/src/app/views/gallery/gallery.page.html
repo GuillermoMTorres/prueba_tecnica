@@ -1,0 +1,19 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Prueba Técnica
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+
+  <div>
+    <app-gallery-filter (submited)="filterGallery($event)"></app-gallery-filter>
+    <app-gallery-view [photoGallery]="photoGallery" (canScroll)="showScroll = true"></app-gallery-view>
+  </div>
+
+  <ion-icon *ngIf="showScroll" class="to-top" (click)="scrollToTop()" name="arrow-up-outline"></ion-icon>
+
+</ion-content>

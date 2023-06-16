@@ -1,0 +1,31 @@
+<form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
+
+    <ion-list>
+      
+        <ion-item>
+          <ion-input
+            formControlName="id"
+            label="Id de la imagen"
+            labelPlacement="stacked"
+            [clearInput]="true"
+            placeholder="0000"
+            type="number"
+          >
+          </ion-input>
+        </ion-item>
+      
+        <ion-item>
+          <ion-input
+            formControlName="text"
+            label="Texto de la imagen"
+            labelPlacement="stacked"
+            [clearInput]="true"
+            placeholder="Texto de busqueda"
+          >
+          </ion-input>
+        </ion-item>
+      </ion-list>
+
+      <ion-button expand="block" type="submit" [disabled]="!filterForm.valid">Buscar</ion-button>    
+
+  </form>
