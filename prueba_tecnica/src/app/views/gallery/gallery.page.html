@@ -8,11 +8,6 @@
 
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
   <div>
     <app-gallery-filter (submited)="filterGallery($event)"></app-gallery-filter>
@@ -20,4 +15,5 @@
   </div>
 
   <ion-icon *ngIf="showScroll" class="to-top" (click)="scrollToTop()" name="arrow-up-outline"></ion-icon>
+
 </ion-content>

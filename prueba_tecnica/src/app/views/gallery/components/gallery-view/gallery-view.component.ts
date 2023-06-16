@@ -7,24 +7,20 @@ import { InfiniteScrollCustomEvent } from '@ionic/angular';
   templateUrl: './gallery-view.component.html',
   styleUrls: ['./gallery-view.component.scss'],
 })
-export class GalleryViewComponent  implements OnInit, OnChanges {
-
-  constructor() { }
+export class GalleryViewComponent  implements OnChanges {
 
   @Input() photoGallery: Array<IPhoto> = [];
   @Output() canScroll = new EventEmitter<boolean>();
 
-  private limit: number = 20;
-  private current: number = 0;
-  private isScrollShown: boolean = false;
+  private _limit: number = 20;
+  private _current: number = 0;
+  public isScrollShown: boolean = false;
   public photoGalleryShow: Array<IPhoto> = [];
 
-  ngOnInit() {
-    this._loadPhotoGalleryShow();
-  }
-
-  ngOnChanges() {
-    this.current = 0;
+  constructor() { }
+  
+  ngOnChanges(): void {
+    this._current = 0;
     this.isScrollShown = false;
     this._loadPhotoGalleryShow();
   }
@@ -39,8 +35,12 @@ export class GalleryViewComponent  implements OnInit, OnChanges {
   }
 
   private _loadPhotoGalleryShow(): void {
-    this.current += this.limit;
-    this.photoGalleryShow = this.photoGallery.slice(0, this.current);
+    this._current += this._limit;
+    this.photoGalleryShow = this.photoGallery.slice(0, this._current);
   }
+
+  onImgError(event: any){
+    event.target.src = "./assets/imgs/not-found.jpg"
+   }
 
 }

@@ -5,13 +5,15 @@ import { LoaderService } from './loader.service';
 @Injectable({
   providedIn: 'root'
 })
+
 export class PhotoService {
-  constructor(private loaderService: LoaderService) { }
 
   public photoGallery: Array<IPhoto> = [];
 
-  generateGallery(): void {
-    this.loaderService.present();
+  constructor(private _loaderService: LoaderService) { }
+
+  public generateGallery(): void {
+    this._loaderService.present();
     let gallery: Array<IPhoto> = [];
 
     for (let i = 1; i <= 4000; i++) {
@@ -34,7 +36,7 @@ export class PhotoService {
     }
 
     this.photoGallery = gallery;
-    this.loaderService.dismiss();
+    this._loaderService.dismiss();
   }
 
   getPhoto(id: number): IPhoto {
