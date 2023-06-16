@@ -46,8 +46,6 @@ describe('GalleryPage', () => {
       }
       return true;
     })
-    console.log(component.photoService.photoGallery.length, 'gallery')
-    console.log(filteredGallery.length, 'filtered')
     expect(filteredGallery.length === component.photoService.photoGallery.length).toBeTrue();
   });
 
