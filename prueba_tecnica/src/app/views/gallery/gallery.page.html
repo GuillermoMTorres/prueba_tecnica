@@ -15,17 +15,9 @@
   </ion-header>
 
   <div>
-    <app-gallery-filter></app-gallery-filter>
-    <app-gallery-view [photoGallery]="photoGallery"></app-gallery-view>
-    <!--
-    <ion-card *ngFor="let photo of photoGallery">
-      <img [src]='photo.photo'/>
-      <ion-card-content>
-        {{photo.text}}
-      </ion-card-content>
-    </ion-card>
-  -->
+    <app-gallery-filter (submited)="filterGallery($event)"></app-gallery-filter>
+    <app-gallery-view [photoGallery]="photoGallery" (canScroll)="showScroll = true"></app-gallery-view>
   </div>
 
-  
+  <ion-icon *ngIf="showScroll" class="to-top" (click)="scrollToTop()" name="arrow-up-outline"></ion-icon>
 </ion-content>

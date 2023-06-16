@@ -1,14 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { IFormFilter } from 'src/app/models/form-filter.model';
+import { ValidatorService } from 'src/app/services/validator.service';
 
 @Component({
   selector: 'app-gallery-filter',
   templateUrl: './gallery-filter.component.html',
   styleUrls: ['./gallery-filter.component.scss'],
 })
-export class GalleryFilterComponent  implements OnInit {
+export class GalleryFilterComponent {
 
-  constructor() { }
+  filterForm = new FormGroup({
+    id: new FormControl(),
+    text: new FormControl(),
+  }, [this.formValidator.filterValidator()]);
 
-  ngOnInit() {}
+  @Output() submited = new EventEmitter<IFormFilter>();
 
+  constructor(public formValidator: ValidatorService) { }
+
+  onSubmit() {
+    this.submited.emit({id: this.filterForm.value.id || null, text: this.filterForm.value.text || null})
+  }
 }

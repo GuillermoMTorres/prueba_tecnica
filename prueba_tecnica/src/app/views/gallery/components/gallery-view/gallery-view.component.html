@@ -1,6 +1,6 @@
-<ion-grid>
+<ion-grid *ngIf="photoGalleryShow.length > 0">
   <ion-row>
-    <ion-col size="3" *ngFor="let photo of photoGallery">
+    <ion-col size-sm="3" size-xs="6" *ngFor="let photo of photoGalleryShow">
       <ion-card>
         <img [src]='photo.photo'/>
         <ion-card-content>
@@ -10,4 +10,17 @@
     </ion-col>
   </ion-row>
 </ion-grid>
+
+<ion-grid [fixed]="true" *ngIf="photoGalleryShow.length === 0">
+  <ion-row>
+    <ion-col class="center" size-sm="12">
+      <p>No se han encontrado coincidencias</p>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+  <ion-infinite-scroll-content></ion-infinite-scroll-content>
+</ion-infinite-scroll>
+
 
