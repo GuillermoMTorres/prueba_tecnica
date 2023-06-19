@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { IFormFilter } from './../models/form-filter.model';
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class ValidatorService {
+
   constructor() {}
 
   public filterValidator() : ValidatorFn{

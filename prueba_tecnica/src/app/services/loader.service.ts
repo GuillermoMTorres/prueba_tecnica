@@ -4,27 +4,28 @@ import { LoadingController } from '@ionic/angular';
 @Injectable({
   providedIn: 'root'
 })
+
 export class LoaderService {
-  isLoading = false;
 
-  constructor(public loadingController: LoadingController) { }
+  private _isLoading: boolean = false;
 
-  async present() {
-    this.isLoading = true;
-    return await this.loadingController.create({
-      // duration: 5000,
+  constructor(private _loadingController: LoadingController) { }
+
+  public async present(): Promise<void> {
+    this._isLoading = true;
+    return await this._loadingController.create({
       message: 'Cargando...'
     }).then(rs => {
       rs.present().then(() => {
-        if (!this.isLoading) {
+        if (!this._isLoading) {
           rs.dismiss();
         }
       });
     });
   }
 
-  async dismiss() {
-    this.isLoading = false;
-    return await this.loadingController.dismiss().then(() => console.log('dismissed'), (err) =>{});
+  public async dismiss(): Promise<void> {
+    this._isLoading = false;
+    return await this._loadingController.dismiss().then(() => console.log('dismissed'), (err) =>{});
   }
 }

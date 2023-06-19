@@ -10,15 +10,14 @@ import { LoaderService } from 'src/app/services/loader.service';
   templateUrl: 'gallery.page.html',
   styleUrls: ['gallery.page.scss'],
 })
-export class GalleryPage implements OnInit {
 
-  constructor(public photoService: PhotoService,
-              public loader: LoaderService,
-              public loadingCtrl: LoadingController) {}
+export class GalleryPage implements OnInit {
 
   @ViewChild(IonContent) content: IonContent;
   public photoGallery: Array<IPhoto> = [];
   public showScroll: boolean = false;
+
+  constructor(public photoService: PhotoService) {}
 
   ngOnInit(): void {
     this.photoGallery = this.photoService.photoGallery
@@ -35,7 +34,5 @@ export class GalleryPage implements OnInit {
       this.photoGallery = rs;
       this.showScroll = false;
     })
-    
-    console.log(this.photoGallery, 'photog')
   }
 }

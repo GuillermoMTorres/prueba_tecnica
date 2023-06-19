@@ -10,7 +10,7 @@ import { ValidatorService } from 'src/app/services/validator.service';
 })
 export class GalleryFilterComponent {
 
-  filterForm = new FormGroup({
+  public filterForm = new FormGroup({
     id: new FormControl(),
     text: new FormControl(),
   }, [this.formValidator.filterValidator()]);
@@ -19,7 +19,7 @@ export class GalleryFilterComponent {
 
   constructor(public formValidator: ValidatorService) { }
 
-  onSubmit() {
+  public onSubmit(): void {
     this.submited.emit({id: this.filterForm.value.id || null, text: this.filterForm.value.text || null})
   }
 }

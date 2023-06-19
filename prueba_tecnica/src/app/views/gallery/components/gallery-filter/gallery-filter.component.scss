@@ -2,6 +2,10 @@ form{
     margin-top: 8px;
     ion-item{
         width: 95%;
+
+        .ion-valid.sc-ion-input-md-h {
+            --highlight-color: var(--ion-color-primary);
+        }
     }
     ion-button{
         width: 30%;

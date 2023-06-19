@@ -18,7 +18,23 @@ describe('GalleryViewComponent', () => {
     fixture.detectChanges();
   }));
 
-  it('should create', () => {
+  it('Debe crearse', () => {
     expect(component).toBeTruthy();
   });
-});
+
+  
+  it('NO muestra el icono de toTop si current < limit', () => {
+    fixture.detectChanges();
+    if(component['_current'] < component['_limit'] ){
+      expect(component.isScrollShown).toBeFalse();
+    }
+  })
+
+  it('Muestra el icono de toTop si current >= limit', () => {
+    fixture.detectChanges();
+    if(component['_current'] >= component['_limit'] ){
+      expect(component.isScrollShown).toBeFalse();
+    }
+  })
+
+})
