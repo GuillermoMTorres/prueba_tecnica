@@ -43,4 +43,8 @@ export class GalleryViewComponent  implements OnInit, OnChanges {
     this.photoGalleryShow = this.photoGallery.slice(0, this.current);
   }
 
+  imageNotFoundHandler(event: any): void {
+    console.debug(event);
+    event.target.src = "./assets/images/not-found.png";
+ }
 }

@@ -28,25 +28,14 @@ export class GalleryPage implements OnInit {
     this.content.scrollToTop(1000);
   }
 
-  async filterGallery(photoData: IFormFilter){
-    this.loader.present();   
-    
-    let filteredGallery: Array<IPhoto> = []
+  public filterGallery(photoData: IFormFilter): void{
 
-    filteredGallery = this.photoService.photoGallery.filter((value) => {
-      if(photoData.id && !photoData.text){
-        return photoData.id === value.id;
-      }else if(!photoData.id && photoData.text){
-        return value.text.includes(photoData.text)
-      }else if(photoData.id && photoData.text){
-        return photoData.id === value.id && value.text.includes(photoData.text)
-      }
-      return true;
+    this.photoService.filterGallery(photoData).subscribe(rs => {
+      console.log(rs, 'rs');
+      this.photoGallery = rs;
+      this.showScroll = false;
     })
-
-    this.photoGallery = filteredGallery;
-    this.showScroll = false;
-    this.loader.dismiss();
+    
     console.log(this.photoGallery, 'photog')
   }
 }

@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 import { IPhoto } from '../models/photo.model';
 import { LoaderService } from './loader.service';
+import { IFormFilter } from '../models/form-filter.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PhotoService {
-  constructor(private loaderService: LoaderService) { }
+  constructor(private loader: LoaderService) { }
 
   public photoGallery: Array<IPhoto> = [];
 
   generateGallery(): void {
-    this.loaderService.present();
+    this.loader.present();
     let gallery: Array<IPhoto> = [];
 
     for (let i = 1; i <= 4000; i++) {
@@ -34,11 +36,33 @@ export class PhotoService {
     }
 
     this.photoGallery = gallery;
-    this.loaderService.dismiss();
+    this.loader.dismiss();
   }
 
-  getPhoto(id: number): IPhoto {
-    return this.photoGallery.filter((id) => id)[0];
-  }
+   public filterGallery(photoData: IFormFilter): Observable<IPhoto[]>{
+    
+    const data = new Observable<IPhoto[]>((obs) => {
 
+      let filteredGallery: Array<IPhoto> = []
+
+      this.loader.present();
+
+      filteredGallery = this.photoGallery.filter((value) => {
+        if(photoData.id && !photoData.text){
+          return photoData.id === value.id;
+        }else if(!photoData.id && photoData.text){
+          return value.text.includes(photoData.text)
+        }else if(photoData.id && photoData.text){
+          return photoData.id === value.id && value.text.includes(photoData.text)
+        }
+        return true;
+      })
+      
+      
+      obs.next(filteredGallery);
+      obs.complete();
+      this.loader.dismiss();
+    })
+    return data;
+  }
 }
