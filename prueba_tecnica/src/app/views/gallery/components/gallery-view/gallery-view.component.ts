@@ -39,8 +39,8 @@ export class GalleryViewComponent  implements OnChanges {
     this.photoGalleryShow = this.photoGallery.slice(0, this._current);
   }
 
-  onImgError(event: any){
-    event.target.src = "./assets/imgs/not-found.jpg"
-   }
-
+  imageNotFoundHandler(event: any): void {
+    console.debug(event);
+    event.target.src = "./assets/imgs/not-found.jpg";
+ }
 }

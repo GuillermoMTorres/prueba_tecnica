@@ -2,7 +2,7 @@
   <ion-row>
     <ion-col size-md="3" size="6" *ngFor="let photo of photoGalleryShow">
       <ion-card>
-        <img [src]='photo.photo' (error)="onImgError($event)"/>
+        <img [src]='photo.photo' (error)="imageNotFoundHandler($event)"/>
         <ion-card-content>
           {{photo.text}}
         </ion-card-content>
@@ -14,7 +14,7 @@
 <ion-grid [fixed]="true" *ngIf="photoGalleryShow.length === 0">
   <ion-row>
     <ion-col class="center" size-sm="12">
-      <p>No se han encontrado coincidencias</p>
+      <p>No se han encontrado coincidencia</p>
     </ion-col>
   </ion-row>
 </ion-grid>
